@@ -1,82 +1,276 @@
-'use client';
-
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight, Shield, Zap, Bot, Lock, Cloud, Activity, Award } from 'lucide-react';
 
 const features = [
   {
-    name: 'AI-Powered Detection',
-    description: 'Self-learning algorithms that adapt to new threats and protect your servers 24/7.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
+    id: 1,
+    icon: <Shield className="w-full h-full" />,
+    title: "Predictive AI Threat Detection",
+    description: "Learns from billions of data points and **anticipates attacks before they happen**. Blocks suspicious traffic in under 50 ms.",
+    gradient: "from-red-500 via-orange-500 to-yellow-500",
+    bgGradient: "from-red-500/20 to-orange-500/10",
+    accentColor: "text-red-400",
+    stats: "50ms Response Time"
   },
   {
-    name: 'Real-time Threat Blocking',
-    description: 'Instant identification and blocking of malicious requests before they reach your server.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
+    id: 2,
+    icon: <Zap className="w-full h-full" />,
+    title: "Zero-Day Exploit Shield",
+    description: "Harnesses behavior-based algorithms to **spot unknown vulnerabilities instantly**, protecting apps while vendors patch.",
+    gradient: "from-purple-500 via-violet-500 to-indigo-500",
+    bgGradient: "from-purple-500/20 to-indigo-500/10",
+    accentColor: "text-purple-400",
+    stats: "Real-time Protection"
   },
   {
-    name: 'Advanced Analytics',
-    description: 'Comprehensive reports and real-time monitoring of threats and traffic patterns.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
+    id: 3,
+    icon: <Bot className="w-full h-full" />,
+    title: "Adaptive DDoS & Bot Defense",
+    description: "A distributed edge network that **absorbs floods, filters scrapers, and isolates malicious bots** — without hurting good users.",
+    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+    bgGradient: "from-emerald-500/20 to-cyan-500/10",
+    accentColor: "text-emerald-400",
+    stats: "Global Edge Network"
   },
   {
-    name: 'API Key Management',
-    description: 'Easy integration with unique API keys for secure access to Shieldify protection.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-      </svg>
-    ),
+    id: 4,
+    icon: <Lock className="w-full h-full" />,
+    title: "Quantum-Grade Encryption",
+    description: "Implements forward secrecy and **post-quantum algorithms** so your data remains secure even against future threats.",
+    gradient: "from-blue-500 via-sky-500 to-cyan-500",
+    bgGradient: "from-blue-500/20 to-cyan-500/10",
+    accentColor: "text-blue-400",
+    stats: "Future-Proof Security"
   },
+  {
+    id: 5,
+    icon: <Cloud className="w-full h-full" />,
+    title: "Frictionless Integration",
+    description: "Install in one click across **AWS, Azure, GCP, Kubernetes, or bare metal** — no custom scripts or downtime.",
+    gradient: "from-pink-500 via-rose-500 to-orange-500",
+    bgGradient: "from-pink-500/20 to-orange-500/10",
+    accentColor: "text-pink-400",
+    stats: "One-Click Deploy"
+  },
+  {
+    id: 6,
+    icon: <Activity className="w-full h-full" />,
+    title: "Live Attack Intelligence",
+    description: "A cinematic dashboard with **real-time heatmaps, logs, and forensic replay** to understand every blocked attempt.",
+    gradient: "from-yellow-500 via-amber-500 to-orange-500",
+    bgGradient: "from-yellow-500/20 to-orange-500/10",
+    accentColor: "text-yellow-400",
+    stats: "Live Monitoring"
+  },
+  {
+    id: 7,
+    icon: <Award className="w-full h-full" />,
+    title: "Enterprise Reliability & Compliance",
+    description: "**99.99% uptime SLA**, ISO-27001/SOC2 certifications, and GDPR/HIPAA readiness keep you safe — and audit-proof.",
+    gradient: "from-slate-400 via-gray-300 to-zinc-400",
+    bgGradient: "from-slate-500/20 to-zinc-500/10",
+    accentColor: "text-slate-300",
+    stats: "99.99% Uptime SLA"
+  }
 ];
 
-const FeatureSection = () => {
-  return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="lg:text-center">
-          <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Features</h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            Advanced Security Protection for Your Servers
-          </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
-            Shieldify provides comprehensive AI-powered protection to keep your hosting servers safe from cyber threats.
-          </p>
-        </div>
+const FeaturesSlider = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const intervalRef = useRef(null);
 
-        <div className="mt-16">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1"
-              >
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-                  {feature.icon}
+  // Auto-play functionality
+  useEffect(() => {
+    if (isAutoPlay) {
+      intervalRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % features.length);
+      }, 5000); // 5 seconds per slide
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isAutoPlay]);
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000); // Resume auto-play after 10s
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % features.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + features.length) % features.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
+
+  const currentFeature = features[currentSlide];
+
+  const formatDescription = (text) => {
+    return text.replace(/\*\*(.*?)\*\*/g, '<span class="font-bold text-white">$1</span>');
+  };
+
+  return (
+    <div className="w-full max-w-7xl mx-auto px-6 py-16 bg-black overflow-hidden">
+      {/* Header */}
+      <div className="text-center mb-14 mt-10">
+        <h2 className="text-3xl md:text-5xl font-black mb-4 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+          Enterprise Security Features
+        </h2>
+        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          We believe security should be powerful yet effortless.
+        </p>
+      </div>
+
+      {/* Main Slider Container */}
+      <div className="relative">
+        {/* Slider Wrapper */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-800">
+          {/* Background Gradient Effect */}
+          <div 
+            className={`absolute inset-0 bg-gradient-to-br ${currentFeature.bgGradient} opacity-30 transition-all duration-1000 ease-in-out`}
+          />
+          
+          {/* Content Container */}
+          <div className="relative z-10 grid lg:grid-cols-2 gap-12 p-12 lg:p-16 min-h-[600px]">
+            {/* Left Side - Content */}
+            <div className="flex flex-col justify-center space-y-8">
+              {/* Feature Number & Stats */}
+              <div className="flex items-center justify-between">
+                <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r ${currentFeature.gradient} text-black font-bold text-sm`}>
+                  #{currentFeature.id.toString().padStart(2, '0')}
                 </div>
-                <h3 className="mt-6 text-lg font-medium text-gray-900">{feature.name}</h3>
-                <p className="mt-2 text-base text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
+                <div className={`${currentFeature.accentColor} font-mono text-sm font-medium`}>
+                  {currentFeature.stats}
+                </div>
+              </div>
+
+              {/* Feature Title */}
+              <h3 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+                {currentFeature.title}
+              </h3>
+
+              {/* Feature Description */}
+              <div 
+                className="text-xl lg:text-2xl text-gray-300 leading-relaxed"
+                dangerouslySetInnerHTML={{
+                  __html: formatDescription(currentFeature.description)
+                }}
+              />
+
+             
+            </div>
+
+            {/* Right Side - Icon & Visual */}
+            <div className="flex items-center justify-center relative">
+              {/* Animated Background Rings */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className={`w-80 h-80 rounded-full border-2 border-gradient-to-r ${currentFeature.gradient} opacity-20 animate-pulse`} />
+                <div className={`absolute w-96 h-96 rounded-full border border-gradient-to-r ${currentFeature.gradient} opacity-10 animate-ping`} />
+              </div>
+
+              {/* Main Icon */}
+              <div className="relative z-20">
+                <div className={`w-48 h-48 ${currentFeature.accentColor} transform transition-all duration-1000 hover:scale-110 hover:rotate-6`}>
+                  {currentFeature.icon}
+                </div>
+              </div>
+
+              {/* Floating Particles */}
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(6)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`absolute w-2 h-2 ${currentFeature.accentColor} rounded-full animate-pulse`}
+                    style={{
+                      top: `${20 + (i * 15)}%`,
+                      left: `${10 + (i * 12)}%`,
+                      animationDelay: `${i * 0.5}s`,
+                      animationDuration: '3s'
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-between mt-8">
+          {/* Previous Button */}
+          <button
+            onClick={prevSlide}
+            className="flex items-center justify-center w-14 h-14 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 group"
+          >
+            <ChevronLeft className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          </button>
+
+          {/* Slide Indicators */}
+          <div className="flex space-x-3">
+            {features.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? `bg-gradient-to-r ${currentFeature.gradient} scale-125` 
+                    : 'bg-gray-600 hover:bg-gray-500'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            className="flex items-center justify-center w-14 h-14 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 group"
+          >
+            <ChevronRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          </button>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="mt-6 w-full bg-gray-800 rounded-full h-1 overflow-hidden">
+          <div 
+            className={`h-full bg-gradient-to-r ${currentFeature.gradient} transition-all duration-300 ease-in-out`}
+            style={{ width: `${((currentSlide + 1) / features.length) * 100}%` }}
+          />
+        </div>
       </div>
-    </section>
+
+      {/* Feature Grid Overview */}
+      <div className="mt-20 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+        {features.map((feature, index) => (
+          <button
+            key={feature.id}
+            onClick={() => goToSlide(index)}
+            className={`p-4 rounded-xl transition-all duration-300 ${
+              index === currentSlide
+                ? `bg-gradient-to-br ${feature.bgGradient} border-2 border-white/20 scale-105`
+                : 'bg-gray-900 hover:bg-gray-800 border border-gray-700'
+            }`}
+          >
+            <div className={`w-8 h-8 ${feature.accentColor} mx-auto mb-2 transition-transform ${
+              index === currentSlide ? 'scale-110' : ''
+            }`}>
+              {feature.icon}
+            </div>
+            <div className="text-xs text-gray-400 font-medium text-center">
+              {feature.title.split(' ').slice(0, 2).join(' ')}
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
   );
 };
 
-export default FeatureSection;
+export default FeaturesSlider;

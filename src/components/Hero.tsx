@@ -1,72 +1,81 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Spline from '@splinetool/react-spline';
+import MovingTextAnimation from './Movingtext';
+
+// Removed unused imports
 
 const Hero = () => {
   return (
-    <section className="relative py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-100"></div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-          <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"
-            >
-              <span className="block">The AI-powered</span>
-              <span className="block bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                Web Application Firewall
-              </span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-6 text-lg text-gray-600 sm:max-w-xl sm:mx-auto lg:mx-0"
-            >
-              Shieldify provides 24/7 protection for your hosting servers with AI-powered threat detection and blocking.
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-10 sm:flex sm:justify-center lg:justify-start"
-            >
-              <div className="rounded-md shadow">
-                <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 md:py-4 md:text-lg md:px-10">
-                  Get API Key
-                </button>
-              </div>
-              <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                  Understand How It Works
-                </button>
-              </div>
-            </motion.div>
+    <>
+      <div className="h-[85vh] w-full bg-black p-8 flex align-middle justify-center font-poppins gap-4">
+
+        <div className="leftdiv h-[75vh] w-[55vw] border-b border-t   border-gray-200 rounded-tl-[40px] rounded-bl-[40px]">
+
+          <div className="flex flex-col justify-center h-full px-6  ">
+
+            <h1 className="text-white font-extrabold text-4xl md:text-6xl lg:text-5xl leading-tight drop-shadow-lg mb-3 animate-fade-in flex items-center gap-2 flex-wrap">
+              The <span className="bg-gradient-to-r from-blue-500 via-blue-700 to-blue-800 bg-clip-text text-transparent">AI-powered</span>
+
+            </h1>
+
+            <h1 className="text-white font-extrabold text-4xl md:text-6xl lg:text-4xl leading-tight drop-shadow-lg mb-1 animate-fade-in delay-100">
+              Web Application
+            </h1>
+
+            <h1 className="text-white font-black text-5xl md:text-5xl lg:text-6xl leading-tight mt-2 tracking-tight drop-shadow-2xl animate-fade-in delay-200">
+              <span className="bg-gradient-to-r from-gray-300 via-gray-600 to-gray-700 bg-clip-text text-transparent">Firewall</span>
+            </h1>
+
+            <p className="text-gray-300 text-sm mt-4 max-w-lg animate-fade-in delay-300">
+              Shieldify – The AI-Powered Web Application Firewall
+              Always-on protection for your servers.
+              Real-time AI threat detection. Zero friction.
+            </p>
+
+            <div className="btncontainer animate-fade-in delay-400">
+              <button className="mt-6 px-7 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900">
+                Get API Key
+              </button>
+
+            </div>
+
+
           </div>
-          <div className="mt-12 sm:mt-16 lg:mt-0 lg:col-span-6">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="bg-white rounded-xl shadow-xl overflow-hidden sm:rounded-2xl transform transition-all hover:scale-105"
-            >
-              <div className="px-4 py-5 sm:p-6">
-                <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
-                  <img 
-                    src="/shieldify-dashboard.webp" 
-                    alt="Shieldify dashboard" 
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              </div>
-            </motion.div>
+
+
+
+        </div>
+
+        <div className="rightdiv relative h-[75vh] w-[70vw]  p-6 shadow-2xl rounded-tr-[40px] rounded-br-[40px] flex items-center justify-center overflow-hidden hover:cursor-pointer
+         border-b border-t  border-gray-100">
+
+          <Spline
+            scene="https://prod.spline.design/vl3A6gvfbzycit9g/scene.splinecode"
+            className="rounded-[40px] h-full w-[70vw] z-10 transition-transform duration-500"
+          />
+
+          <div className="divtxt drop-shadow-[0_0_6px_rgba(59,130,246,0.6)] absolute bottom-8 left-10 text-white z-20 bg-transparent p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
+            <h5>cyber security</h5>
+          </div>
+          <div className="divtxt2 drop-shadow-[0_0_8px_rgba(59,130,246,0.6)] absolute bottom-8 right-60 text-white z-20 bg-transparent p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
+            <h5>Aegis</h5>
+          </div>
+          <div className="divtxt3 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)] absolute bottom-8 right-5 text-white z-20 bg-transparent p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
+            <h5>Smarter. Faster. Safer.</h5>
           </div>
         </div>
+
       </div>
-    </section>
+
+       <div>
+      <MovingTextAnimation />
+    </div>
+
+
+
+      
+    </>
   );
 };
 
