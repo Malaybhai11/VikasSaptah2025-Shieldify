@@ -1,15 +1,20 @@
-'use server';
-import { redirect } from 'next/dist/server/api-utils';
-import { createServerSupabase } from '../utils/supabase/server';
+"use server";
 
-export async function signUp(formData: FormData) {
-  const email = String(formData.get('email') ?? '');
-  const password = String(formData.get('password') ?? '');
+import { createServerSupabase } from "../utils/supabase/server";
 
+export async function signUpWithGoogle() {
   const supabase = await createServerSupabase();
-  const { error } = await supabase.auth.signUp({ email, password });
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: process.env.NEXT_PUBLIC_SITE_URL + "/auth/callback",
+    },
+  });
 
   if (error) {
     throw new Error(error.message);
   }
+
+  return data;
 }
