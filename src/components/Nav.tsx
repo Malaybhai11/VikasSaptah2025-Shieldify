@@ -164,25 +164,25 @@ const Nav = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/90 backdrop-blur-md">
             <Link
-              href="#pricing"
+              href="/pricing"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100"
               onClick={() => setIsMenuOpen(false)}
             >
               Pricing
             </Link>
             <Link
-              href="#enterprise"
+              href="/working"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100"
               onClick={() => setIsMenuOpen(false)}
             >
-              Enterprise
+              How it Works?
             </Link>
             <Link
-              href="#resources"
+              href="/setup"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100"
               onClick={() => setIsMenuOpen(false)}
             >
-              Resources
+              Setup
             </Link>
             <div className="pt-2">
               <motion.button
