@@ -274,7 +274,7 @@ const GalaxyFooter = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="absolute bottom-2 right-2 opacity-0 transition-opacity duration-300 z-20">
         <a href="http://dnsexit.com"><img src="http://dnsexit.com/images/dns2.gif" className="border=0" /></a>
       </div>
 
