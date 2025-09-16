@@ -134,13 +134,13 @@ const MarqueeRow = ({ direction = "left", speed = 40, size = "4rem" }) => {
 
   return (
     <div className="marquee-wrapper">
-      <div
-        className={`marquee-track ${direction}`}
-        style={{
-          '--animation-duration': `${speed}s`,
-          '--icon-size': size
-        }}
-      >
+        <div
+          className={`marquee-track ${direction}`}
+          style={{
+            '--animation-duration': `${speed}s`,
+            '--icon-size': size
+          } as React.CSSProperties}
+        >
         {repeatedIcons.map((tech, index) => (
           <div
             key={`${tech.name}-${index}`}
@@ -148,7 +148,7 @@ const MarqueeRow = ({ direction = "left", speed = 40, size = "4rem" }) => {
             style={{
               '--primary-color': tech.color,
               '--glow-color': tech.glow,
-            }}
+            } as React.CSSProperties}
           >
             <div className="tech-icon">
               {tech.icon}

@@ -8,7 +8,7 @@ const GalaxyFooter = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => { // Add type
       const rect = document.getElementById('footer-container')?.getBoundingClientRect();
       if (rect) {
         setMousePosition({
@@ -26,7 +26,13 @@ const GalaxyFooter = () => {
     };
   }, []);
 
-  const LinkComponent = ({ href, children, className = "" }) => (
+  type LinkComponentProps = {
+    href: string;
+    children: React.ReactNode;
+    className?: string;
+  };
+
+  const LinkComponent = ({ href, children, className = "" }: LinkComponentProps) => (
     <Link 
       href={href} 
       className={`group relative text-sm text-gray-400 hover:text-white transition-all duration-300 ${className}`}

@@ -55,13 +55,13 @@ const Hero = () => {
             className="rounded-[40px] h-full w-[70vw] z-10 transition-transform duration-500"
           />
 
-          <div className="divtxt drop-shadow-[0_0_6px_rgba(59,130,246,0.6)] absolute bottom-8 left-10 text-white z-20 bg-transparent p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
+          <div className="divtxt drop-shadow-[0_0_6px_rgba(59,130,246,0.6)] absolute bottom-8 left-10 text-white z-20  p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
             <h5>cyber security</h5>
           </div>
-          <div className="divtxt2 drop-shadow-[0_0_8px_rgba(59,130,246,0.6)] absolute bottom-8 right-60 text-white z-20 bg-transparent p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
+          <div className="divtxt2 drop-shadow-[0_0_8px_rgba(59,130,246,0.6)] absolute bottom-8 right-60 text-white z-20  p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
             <h5>Aegis</h5>
           </div>
-          <div className="divtxt3 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)] absolute bottom-8 right-5 text-white z-20 bg-transparent p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
+          <div className="divtxt3 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)] absolute bottom-8 right-5 text-white z-20  p-4 rounded-lg backdrop-blur-sm bg-white/10 border border-white/20 backdrop:filter(blur(10px))">
             <h5>Smarter. Faster. Safer.</h5>
           </div>
         </div>
