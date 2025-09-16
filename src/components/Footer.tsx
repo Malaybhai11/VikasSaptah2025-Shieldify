@@ -274,6 +274,9 @@ const GalaxyFooter = () => {
           </div>
         </div>
       </div>
+      <div>
+        <a href="http://dnsexit.com"><img src="http://dnsexit.com/images/dns2.gif" className="border=0" /></a>
+      </div>
 
       {/* CSS Animations */}
       <style jsx>{`
